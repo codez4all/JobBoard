@@ -1,7 +1,6 @@
-/*
-/!**
+/**
  * Created by sheetal on 3/14/17.
- *!/
+ */
 
 'use strict';
 
@@ -12,4 +11,3 @@ function sendJSONresponse(prop) {
     res.json(req.resources[prop]);
   }
 }
-*/

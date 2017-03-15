@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by sheetal on 3/14/17.
- */
+ *!/
 
 //Add the necessary dependencies
 const mongoose = require('mongoose');
@@ -17,7 +18,7 @@ const cntEnum = Countries.map(item => item.code);
 const jobEnum = Jobtypes.map(item => item.slug);
 
 // Define the Mongoose schema
-let JobSchema = new Schema({
+var JobSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -61,10 +62,11 @@ let JobSchema = new Schema({
 });
 
 //Add a pre-save hook
-JobSchema.pre('save', (next) => {
+JobSchema.pre('save', function(next)  {
   this.slug = commonHelper.createSlug(this.name);
 next();
 });
 
 //compile the model
 module.exports = mongoose.model('Job', JobSchema);
+*/

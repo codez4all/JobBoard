@@ -1,13 +1,14 @@
-/**
+/*
+/!**
  * Created by sheetal on 3/14/17.
- */
+ *!/
 
 'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-let ApplicationSchema = new Schema({
+var ApplicationSchema = new Schema({
   user: {
     type: ObjectId,
     required: true,
@@ -31,3 +32,4 @@ let ApplicationSchema = new Schema({
 
 module.exports = mongoose.model('Application', ApplicationSchema);
 
+*/

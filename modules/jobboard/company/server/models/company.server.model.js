@@ -1,7 +1,6 @@
-/*
-/!**
+/**
  * Created by sheetal on 3/14/17.
- *!/
+ */
 
 'use strict';
 
@@ -10,7 +9,7 @@ const commonHelper = require('../helpers/common');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
- let CompanySchema = new Schema({
+var CompanySchema = new Schema({
   name: {
     type: String,
     required: true
@@ -33,12 +32,11 @@ const ObjectId = Schema.ObjectId;
   }
 });
 
-CompanySchema.pre('save', (next) => {
+CompanySchema.pre('save', function(next) {
   this.slug = commonHelper.createSlug(this.name);
-  next();
+next();
 });
 
 
 // compile Company model
 module.exports = mongoose.model('Company', CompanySchema);
-*/

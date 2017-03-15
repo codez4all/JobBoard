@@ -1,7 +1,6 @@
-/*
-/!**
+/**
  * Created by sheetal on 3/14/17.
- *!/
+ */
 
 var UserSchema = new Schema({
   email: {
@@ -41,4 +40,3 @@ var UserSchema = new Schema({
   }
 
 });
-*/

@@ -1,13 +1,13 @@
-/*
-/!**
+/**
  * Created by sheetal on 3/14/17.
- *!/
+ */
 
 'use strict';
 
 const _ = require('lodash');
 const mongoose = require('mongoose');
 const Company = mongoose.model('Company');
+var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 module.exports.create = createCompany;
 
@@ -15,7 +15,8 @@ function createCompany(req, res, next) {
   var data = _.pick(req.body, ['name', 'country', 'address']);
   data.owner = req.user._id;
   data.members = [req.user._id];
-  Company.create(data, function(err, company){
+
+  Company.create(data, function(err, company) {
     if (err) {
     return next(err);
   }
@@ -48,7 +49,7 @@ function getAllCompanies(req, res, next) {
     .find(query)
     .limit(limit)
     .skip(skip)
-    .exec( function(err, companies){
+    .exec(function(err, companies) {
     if (err) {
     return next(err);
   }
@@ -62,7 +63,7 @@ module.exports.update = updateCompany;
 function updateCompany(req, res, next) {
   var data = _.pick(req.body, ['name', 'country', 'address']);
   _.assign(req.resources.company, req.body);
-  req.resources.company.save(function(err, updatedCompany){
+  req.resources.company.save(function (err, updatedCompany)  {
     if (err) {
     return next(err);
   }
@@ -84,7 +85,7 @@ function addCompanyMember(req, res, next) {
     });
   }
   req.resources.company.members.push(req.body.member);
-  req.resources.company.save(function(err, updatedCompany)  {
+  req.resources.company.save(function (err, updatedCompany)  {
     if (err) {
     return next(err);
   }
@@ -105,7 +106,7 @@ function removeCompanyMember(req, res, next) {
     });
   }
   _.pull(req.resources.company.members, req.body.member);
-  req.resources.company.save(function(err, updatedCompany)  {
+  req.resources.company.save(function (err, updatedCompany) {
     if (err) {
     return next(err);
   }
@@ -115,4 +116,6 @@ function removeCompanyMember(req, res, next) {
 }
 
 
-*/
+
+
+

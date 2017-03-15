@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by sheetal on 3/14/17.
- */
+ *!/
 
 module.exports.create = createApplication;
 
@@ -8,7 +9,7 @@ function createApplication(req, res, next) {
   Application.create({
     user: req.user._id,
     job: req.params.jobId
-  }, (err, application) => {
+  }, function(err, application) {
     if (err) {
     return next(err);
   }
@@ -23,7 +24,7 @@ function findApplicationById(req, res, next) {
   if (!ObjectId.isValid(id)) {
     res.status(404).send({ message: 'Not found.'});
   }
-  Application.findById(req.params.applicationId, (err, application) =>
+  Application.findById(req.params.applicationId, function(err, application)
   {
     if (err) {
     return next(err);
@@ -38,7 +39,7 @@ module.exports.getAll = getAllApplications;
 function getAllApplications(req, res, next) {
   const limit = +req.query.limit || 50;
   const skip = +req.query.skip || 0;
-  let query = {
+  var query = {
     job: req.params.jobId
   };
   if (req.query.status) {
@@ -48,7 +49,7 @@ function getAllApplications(req, res, next) {
     .find(query)
     .limit(limit)
     .skip(offset)
-    .exec((err, applications) => {
+    .exec(function(err, applications)  {
     if (err) {
     return next(err);
   }
@@ -62,7 +63,7 @@ module.exports.update = updateApplication;
 
 function updateApplication(req, res, next) {
   req.resources.application.status = req.body.status;
-  req.resources.application.save((err, updatedApplication) => {
+  req.resources.application.save(function(err, updatedApplication){
     if (err) {
     return next(err);
   }
@@ -73,10 +74,11 @@ function updateApplication(req, res, next) {
 module.exports.remove = removeApplication;
 
 function removeApplication(req, res, next) {
-  req.resources.application.remove((err) => {
+  req.resources.application.remove(function(err) {
     if (err) {
     return next(err);
   }
   res.json(req.resources.application);
 });
 }
+*/
