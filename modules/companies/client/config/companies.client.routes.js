@@ -33,7 +33,7 @@
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Companies Create'
+          pageTitle: 'Create Company'
         }
       })
       .state('companies.edit', {

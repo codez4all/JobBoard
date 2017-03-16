@@ -6,15 +6,37 @@
     .module('companies')
     .factory('CompaniesService', CompaniesService);
 
-  CompaniesService.$inject = ['$resource'];
+  CompaniesService.$inject = ['$resource', 'Notification'];
 
-  function CompaniesService($resource) {
-    return $resource('api/companies/:companyId', {
+  function CompaniesService($resource, Notification) {
+    var Companies = $resource('/api/companies/:companyId', {
+      companyId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      },
+      create: {
+        method: 'POST',
+        url: '/api/companies'
+      }
+    });
+
+    angular.extend(Companies, {
+      companyCreate: function(companyFormData){
+        Notification.error({ message: companyFormData.name, title: '<i class="glyphicon glyphicon-remove"></i> In Service!', delay: 6000 });
+
+        return this.create(companyFormData).$promise;
+      }
+    });
+
+    return Companies;
+
+    /*return $resource('api/companies/:companyId', {
       companyId: '@_id'
     }, {
       update: {
         method: 'PUT'
       }
-    });
+    });*/
   }
 }());

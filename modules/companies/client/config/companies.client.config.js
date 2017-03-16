@@ -8,7 +8,7 @@
   menuConfig.$inject = ['menuService'];
 
   function menuConfig(menuService) {
-    // Set top bar menu items
+    /*// Set top bar menu items
     menuService.addMenuItem('topbar', {
       title: 'Companies',
       state: 'companies',
@@ -24,6 +24,18 @@
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'companies', {
+      title: 'Create Company',
+      state: 'companies.create',
+      roles: ['user']
+    });*/
+
+    menuService.addMenuItem('topbar', {
+      title: 'List Companies',
+      state: 'companies.list',
+      roles: ['*']
+    });
+
+    menuService.addMenuItem('topbar', {
       title: 'Create Company',
       state: 'companies.create',
       roles: ['user']
