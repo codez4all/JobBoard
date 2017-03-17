@@ -23,8 +23,6 @@
 
     angular.extend(Companies, {
       companyCreate: function(companyFormData){
-        Notification.error({ message: companyFormData.name, title: '<i class="glyphicon glyphicon-remove"></i> In Service!', delay: 6000 });
-
         return this.create(companyFormData).$promise;
       }
     });

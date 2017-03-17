@@ -16,15 +16,32 @@ exports.create = function(req, res) {
   var company = new Company(req.body);
   company.user = req.user;
 
-  company.save(function(err) {
+  // Find this user has company created already
+  Company.find({user: req.user}).exec(function(err, companies){
     if (err) {
-      return res.status(400).send({
+      res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.jsonp(company);
+    } else if (!companies) {
+
+      // Save if company does not exists
+      company.save(function(err) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.jsonp(company);
+        }
+      });
+    }else{
+      return res.status(400).send({
+        message: 'Company already present in your name!'
+      });
     }
   });
+
+
 };
 
 /**
@@ -114,4 +131,6 @@ exports.companyByID = function(req, res, next, id) {
     req.company = company;
     next();
   });
+
+
 };
