@@ -7,13 +7,14 @@
        ui-sref="companies.view({ companyId: company._id })"
        class="list-group-item">
       <small class="list-group-item-text">
-        Posted on
+        Created on
         <span ng-bind="company.created | date:'mediumDate'"></span>
         by
         <span ng-if="company.user" ng-bind="company.user.displayName"></span>
         <span ng-if="!company.user">Deleted User</span>
       </small>
       <h4 class="list-group-item-heading" ng-bind="company.name"></h4>
+
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.companies.$resolved && !vm.companies.length">

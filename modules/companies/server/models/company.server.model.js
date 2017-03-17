@@ -16,6 +16,17 @@ var CompanySchema = new Schema({
     required: 'Please fill Company name',
     trim: true
   },
+  city: {
+    type: String,
+    default: '',
+    required: 'Please fill Company city',
+    trim: true
+  },
+  description: {
+    type: String,
+    default: '',
+    trim: true
+  },
   created: {
     type: Date,
     default: Date.now
