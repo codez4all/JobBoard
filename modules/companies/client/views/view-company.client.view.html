@@ -12,15 +12,21 @@
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
-  <small>
+<!--  <small>
     <em class="text-muted">
-      Posted on
+      Created on
       <span ng-bind="vm.company.created | date:'mediumDate'"></span>
       by
       <span ng-if="vm.company.user"
             ng-bind="vm.company.user.displayName"></span>
       <span ng-if="!vm.company.user">Deleted User</span>
     </em>
-  </small>
+  </small>-->
+
+  <label>
+    <em class="text-primary">
+      Current Open Positions
+    </em>
+  </label>
   <p class="lead" ng-bind="vm.company.content"></p>
 </section>
