@@ -6,6 +6,8 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Company = mongoose.model('Company'),
+  //Jobs = mongoose.model('Job');
+  Jobs = mongoose.model('Job'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -114,6 +116,7 @@ exports.list = function(req, res) {
  */
 exports.companyByID = function(req, res, next, id) {
 
+  console.log("in companybyid::"+id);
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'Company is invalid'
@@ -134,3 +137,40 @@ exports.companyByID = function(req, res, next, id) {
 
 
 };
+
+
+exports.companyJobs = function(req, res){
+  console.log("hkadsvbfhsk"+req.body.companyId);
+  var companyId = req.body.companyId;
+
+  console.log("in node:"+companyId);
+
+/*  Jobs.find({employment_type:"Fulltime"}).exec(function(err, jobs) {
+    console.log("after mongo hitttttt:"+jobs);
+    if(err)
+    {
+      res.send({"status":"403"})
+    }
+    else
+    {
+      res.send({"status":"200", "jobs":jobs});
+    }
+  });*/
+
+
+  Jobs.find({company:companyId}).exec(function(err, jobs) {
+    console.log("after mongo hit:"+jobs);
+    if(err)
+    {
+      res.send({"status":"403"})
+    }
+    else
+    {
+      res.send({"status":"200", "jobs":jobs});
+    }
+  });
+
+
+
+//res.send({"data":"200status"});
+}

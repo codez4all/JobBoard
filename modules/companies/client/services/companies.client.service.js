@@ -18,6 +18,9 @@
       create: {
         method: 'POST',
         url: '/api/companies'
+      },
+      getJob: {
+        method: 'POST'
       }
     });
 
