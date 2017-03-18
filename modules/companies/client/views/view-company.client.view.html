@@ -2,6 +2,7 @@
   <div class="page-header">
     <h1 ng-bind="vm.company.name"></h1>
   </div>
+
   <div class="pull-right"
        ng-show="vm.company.isCurrentUserOwner">
     <a class="btn btn-primary"
@@ -12,21 +13,25 @@
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
-<!--  <small>
-    <em class="text-muted">
-      Created on
-      <span ng-bind="vm.company.created | date:'mediumDate'"></span>
-      by
-      <span ng-if="vm.company.user"
-            ng-bind="vm.company.user.displayName"></span>
-      <span ng-if="!vm.company.user">Deleted User</span>
-    </em>
-  </small>-->
 
-  <label>
+  <small>
+   <em class="text-muted">
+     <span ng-bind="vm.company.headquarters"></span>
+     WebSite
+     <span ng-bind="vm.company.website"></span>
+     <!-- <span ng-if="vm.company.user"
+            ng-bind="vm.company.user.displayName"></span>
+      <span ng-if="!vm.company.user">Deleted User</span>-->
+    </em>
+  </small>
+
+ <div>
+  <p class="text-info" ng-bind="vm.company.description"></p>
+ </div>
+
+  <div>
     <em class="text-primary">
       Current Open Positions
     </em>
-  </label>
-  <p class="lead" ng-bind="vm.company.content"></p>
+  </div>
 </section>

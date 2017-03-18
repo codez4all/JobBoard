@@ -13,17 +13,35 @@
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label class="control-label" for="city">City</label>
-          <input name="city" type="text" ng-model="vm.company.city" id="city" class="form-control" placeholder="City" required>
-          <div ng-messages="vm.form.companyForm.city.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Company city is required.</p>
+          <label class="control-label" for="headquarters">Headquarters</label>
+          <input name="headquarters" type="text" ng-model="vm.company.headquarters" id="headquarters" class="form-control" placeholder="Headquarters" required>
+          <div ng-messages="vm.form.companyForm.headquarters.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Company headquarters is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label class="control-label" for="description">Description</label>
+          <label class="control-label" for="description">About us</label>
           <textarea name="description" type="text" ng-model="vm.company.description" id="description" class="form-control" placeholder="Description"></textarea>
         </div>
-
+        <div class="form-group" show-errors>
+          <label class="control-label" for="website">Website</label>
+          <input name="website" type="text" ng-model="vm.company.website" id="website" class="form-control" placeholder="Website">
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="industry">Industry</label>
+          <input name="industry" type="text" ng-model="vm.company.industry" id="industry" class="form-control" placeholder="Industry" required>
+          <div ng-messages="vm.form.companyForm.industry.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Company industry type is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="specialties">Specialties</label>
+          <input name="specialties" type="text" ng-model="vm.company.specialties" id="specialties" class="form-control" placeholder="Specialties">
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="companySize">Company Size</label>
+          <input name="companySize" type="text" ng-model="vm.company.company_size" id="companySize" class="form-control" placeholder="Company Size">
+        </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.company._id ? 'Update' : 'Create'}}</button>
         </div>

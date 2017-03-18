@@ -18,6 +18,7 @@
     vm.remove = remove;
     vm.save = save;
 
+
     // Remove existing Company
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
@@ -32,12 +33,9 @@
         return false;
       }
 
-      Notification.error({ message: 'OK calling service', title: '<i class="glyphicon glyphicon-remove"></i> In Controller!', delay: 6000 });
-
       CompaniesService.companyCreate(vm.company)
         .then(successCallback)
         .catch(errorCallback);
-
 
       /*
 
@@ -46,18 +44,26 @@
         vm.company.$update(successCallback, errorCallback);
       } else {
         vm.company.$save(successCallback, errorCallback);
-      }*/
+      } */
 
 
     }
 
     function successCallback(res) {
-      $state.go('companies.view', {
-        companyId: res._id
-      });
+
+      /*
+      $scope.$state.go('companies.view', {
+       companyId: res._id
+       });
+       */
+
+      $state.go('companies.list');
     }
 
     function errorCallback(res) {
+
+      Notification.error({ message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Error', delay: 6000 });
+
       vm.error = res.data.message;
     }
   }
