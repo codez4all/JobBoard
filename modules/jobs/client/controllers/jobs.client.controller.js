@@ -32,8 +32,6 @@
         return false;
       }
 
-      Notification.error({ message: 'OK calling service', title: '<i class="glyphicon glyphicon-remove"></i> In Controller!', delay: 6000 });
-
       JobsService.jobCreate(vm.job)
         .then(successCallback)
         .catch(errorCallback);

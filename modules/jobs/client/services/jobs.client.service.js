@@ -23,8 +23,6 @@
 
     angular.extend(Jobs, {
       jobCreate: function(jobFormData){
-        Notification.error({ message: jobFormData.name, title: '<i class="glyphicon glyphicon-remove"></i> In Service!', delay: 6000 });
-
         return this.create(jobFormData).$promise;
       }
     });

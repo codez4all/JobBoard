@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Job = mongoose.model('Job'),
+  Company = mongoose.model('Company'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -16,15 +17,34 @@ exports.create = function(req, res) {
   var job = new Job(req.body);
   job.user = req.user;
 
-  job.save(function(err) {
-    if (err) {
+  var companySearchQuery = {user: req.user};
+
+  Company.findOne(companySearchQuery).exec(function (err, company) {
+    if(err){
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.jsonp(job);
+    } else if(!company){
+      return res.status(400).send({
+        message: 'Create company before creating job!'
+      });
+    }else{
+      job.company = company;
+      // Save Job
+      job.save(function(err) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.jsonp(job);
+        }
+      });
     }
+
   });
+
+
 };
 
 /**

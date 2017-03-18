@@ -22,7 +22,7 @@ exports.create = function(req, res) {
       res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else if (!companies) {
+    } else if (companies.length == 0) {
 
       // Save if company does not exists
       company.save(function(err) {
