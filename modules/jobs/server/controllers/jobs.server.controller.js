@@ -15,7 +15,7 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var job = new Job(req.body);
-  job.user = req.user;
+  job.created_by = req.user;
 
   var companySearchQuery = {user: req.user};
 
@@ -56,7 +56,7 @@ exports.read = function(req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  job.isCurrentUserOwner = req.user && job.user && job.user._id.toString() === req.user._id.toString();
+  job.isCurrentUserOwner = req.user && job.created_by && job.created_by._id.toString() === req.user._id.toString();
 
   res.jsonp(job);
 };
@@ -101,7 +101,7 @@ exports.delete = function(req, res) {
  * List of Jobs
  */
 exports.list = function(req, res) {
-  Job.find().sort('-created').populate('user', 'displayName').exec(function(err, jobs) {
+  Job.find().sort('-created').populate('created_by', 'displayName').exec(function(err, jobs) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -123,7 +123,7 @@ exports.jobByID = function(req, res, next, id) {
     });
   }
 
-  Job.findById(id).populate('user', 'displayName').exec(function (err, job) {
+  Job.findById(id).populate('created_by', 'displayName').exec(function (err, job) {
     if (err) {
       return next(err);
     } else if (!job) {
