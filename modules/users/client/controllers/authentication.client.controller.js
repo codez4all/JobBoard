@@ -17,6 +17,32 @@
     vm.callOauthProvider = callOauthProvider;
     vm.usernameRegex = /^(?=[\w.-]+$)(?!.*[._-]{2})(?!\.)(?!.*\.$).{3,34}$/;
 
+
+    vm.uploadResume = function(){
+      console.log("in photo upload");
+
+    filepicker.pick(
+      {
+        mimetype: 'image/*',
+        container: 'modal',
+        services: ['COMPUTER', 'FACEBOOK', 'INSTAGRAM', 'GOOGLE_DRIVE', 'DROPBOX']
+      },
+      function(Blob){
+        console.log(JSON.stringify(Blob.url));
+        //vm.user.profilepic=Blob.url;
+        //vm.trips[tripId].photo = Blob.url;
+        //console.log(vm.trips[tripId].photo);
+        //vm.trips[tripId].uploadButton = true;
+
+        //vm.UpdateProfile();
+      },
+      function(FPError){
+        console.log(FPError.toString());
+      });
+
+  }
+
+
     // Get an eventual error defined in the URL query string:
     if ($location.search().err) {
       Notification.error({ message: $location.search().err });
