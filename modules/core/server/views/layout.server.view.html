@@ -31,6 +31,17 @@
   <!-- Fav Icon -->
   <link href="/{{favicon}}" rel="shortcut icon" type="image/x-icon">
 
+<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+<script>
+    var client = filestack.init('ANzAoLT2OvxdhExbQsjQyz');
+    function showPicker() {
+        client.pick({
+        }).then(function(result) {
+            console.log(JSON.stringify(result.filesUploaded))
+        });
+    }
+</script>
+
   <!-- Application CSS Files -->
   {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
 </head>

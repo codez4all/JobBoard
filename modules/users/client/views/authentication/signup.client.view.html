@@ -47,7 +47,9 @@
           <label>Password Requirements</label>
           <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
         </div>
+
         <div class="text-center form-group">
+          <input class="btn btn-primary" type="button" value="Upload Resume" onclick="showPicker()" />
           <button type="submit" class="btn btn-primary">Sign up</button>
           &nbsp; or&nbsp;
           <a ui-sref="authentication.signin" class="show-signup">Sign in</a>

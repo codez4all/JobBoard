@@ -15,8 +15,16 @@ module.exports = function(app) {
   app.route('/api/companies/:companyId').all(companiesPolicy.isAllowed)
     .get(companies.read)
     .put(companies.update)
-    .delete(companies.delete);
+    .delete(companies.delete)
+    .post(companies.companyJobs);
 
+/*  app.route('/api/companies/jobs/:companyId').all(companiesPolicy.isAllowed)
+    .get(companies.companyJobs);
+    //.put(companies.update)
+    //.delete(companies.delete);*/
+
+    app.route('/api/companies/jobs').all(companiesPolicy.isAllowed)
+    .post(companies.companyJobs);
   // Finish by binding the Company middleware
   app.param('companyId', companies.companyByID);
 };

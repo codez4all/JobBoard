@@ -31,7 +31,34 @@
 
   <div>
     <em class="text-primary">
-      Current Open Positions
+    <BUTTON class="btn-primary" ng-click="vm.showOpenPositions(vm.company._id)">
+      
+        Current Open Positions
+      
+    </BUTTON>
+
     </em>
+  </div ng-show="vm.jobFlag">
+
+
+  <div class="list-group">
+    <a ng-repeat="job in vm.jobs"
+       ui-sref="jobs.view({ jobId: job._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="job.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="job.user" ng-bind="job.user.displayName"></span>
+        <span ng-if="!job.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="job.name"></h4>
+    </a>
   </div>
+
+
+  <div>
+    
+  </div>
+
 </section>

@@ -6,9 +6,9 @@
     .module('companies')
     .controller('CompaniesController', CompaniesController);
 
-  CompaniesController.$inject = ['$scope', '$state', 'CompaniesService', '$window', 'Authentication', 'companyResolve', 'Notification'];
+  CompaniesController.$inject = ['$scope', '$state', 'CompaniesService', '$window', 'Authentication', 'companyResolve', 'Notification', '$http', '$resource'];
 
-  function CompaniesController ($scope, $state, CompaniesService, $window, Authentication, company, Notification) {
+  function CompaniesController ($scope, $state, CompaniesService, $window, Authentication, company, Notification, $http, $resource) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,7 +17,23 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.showOpenPositions = showOpenPositions;
+    vm.jobFlag = false;
 
+
+    function showOpenPositions(companyId){
+
+      console.log("Here"+companyId);
+      //var jobs = $resource('/api/companies/jobs/:companyId',{companyId:'@companyId'});
+
+      $http.post("/api/companies/"+companyId, {"companyId":companyId})
+      .then(function(res){
+        console.log("Here after then"+res.data.jobs);
+        vm.jobs = res.data.jobs;
+        vm.jobFlag = true;
+      });
+
+    }
 
     // Remove existing Company
     function remove() {

@@ -28,16 +28,16 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'post']
     }, {
       resources: '/api/companies/:companyId',
-      permissions: ['get']
+      permissions: ['get', 'post']
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/companies',
-      permissions: ['get']
+      permissions: ['get','post']
     }, {
       resources: '/api/companies/:companyId',
-      permissions: ['get']
+      permissions: ['get', 'post']
     }]
   }]);
 };
